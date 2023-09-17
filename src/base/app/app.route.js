@@ -1,9 +1,9 @@
 module.exports = function (webSocketIo, app) {
 
     // main app routes
-    app.get("/api", (req, res) => {
+    app.get("/status", (req, res) => {
       res.send({
-        "message": "Api is working",
+        "message": "api is running",
         "status": 200
       });
     });
