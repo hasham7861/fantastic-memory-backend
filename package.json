@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node src/server",
-    "dev": "node-dev ./src/server.js",
+    "dev": "nodemon ./src/server.js",
     "dev:docker": "docker compose -f local.docker-compose.yml up",
     "eslint": "eslint",
     "test": "mocha --recursive src/tests/**/*.js"
@@ -27,7 +27,6 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.10.1",
-    "node-dev": "^8.0.0",
     "ramda": "^0.27.1",
     "socket.io": "^2.3.0"
   },
@@ -35,6 +34,7 @@
     "chai": "^4.3.0",
     "eslint": "^7.19.0",
     "mocha": "^8.3.0",
-    "mongodb": "^3.6.4"
+    "mongodb": "^3.6.4",
+    "nodemon": "^3.0.1"
   }
 }

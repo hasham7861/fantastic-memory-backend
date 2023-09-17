@@ -12,7 +12,7 @@ services:
       - mynet
     ports:
       - 5000:5000
-    # node-dev watcher needs to watch for local changes to reload the app
+    # nodemon watcher needs to watch for local changes to reload the app
     volumes:
       - ./src:/app/src:ro
       - ./package.json:/app/package.json:ro
@@ -33,23 +33,6 @@ services:
       - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - db:/data/db
-
-  database-admin:
-    container_name: database-admin
-    image: mongo-express
-    restart: 'no'
-    env_file:
-      - .env
-    ports:
-      - 8081:8081
-    networks:
-      - mynet
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: $MONGODB_USER
-      ME_CONFIG_MONGODB_ADMINPASSWORD: $MONGODB_PASSWORD
-      ME_CONFIG_MONGODB_URL: $MONGO_CONNECTION_URL
-    depends_on:
-      - database
 
 networks:
   mynet:

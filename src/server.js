@@ -2,8 +2,9 @@
 const express = require("express");
 const http = require('http');
 const cors = require('cors');
+const path = require('path');
 
-const env = require("./env.json");
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const { connectToDB } = require("./shared/mongoDB");
 const webSocket = require('socket.io');
 const initAppRoutes = require('./base/app/app.route');
@@ -18,8 +19,9 @@ class Server {
    */
   static async _setupAndRetrieveExpressApp() {
 
+    const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',')
     const corsOptions = {
-      origins: env.AllowedOrigins,
+      origins:allowedOrigins,
       optionSuccessStatus: 200
     }
     const app = express();
@@ -47,8 +49,9 @@ class Server {
 
     //giving websocket protocol access to express app
     initAppRoutes(webSocketIo, app);
-
-    server.listen(env.PORT);
+    server.listen(process.env.PORT, () => {
+      console.log('Listening for requests on port', process.env.PORT)
+    });
 
   }
 
