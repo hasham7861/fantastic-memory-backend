@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: local.Dockerfile
+    restart: 'no'
+    networks:
+      - mynet
+    ports:
+      - 5000:5000
+    # node-dev watcher needs to watch for local changes to reload the app
+    volumes:
+      - ./src:/app/src:ro
+      - ./package.json:/app/package.json:ro
+      - ./package-lock.json:/app/package-lock.json:ro
+
+  database:
+    container_name: database
+    image: mongo:3.6.0
+    restart: 'no'
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    networks:
+      - mynet
+    ports:
+      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
+    volumes:
+      - db:/data/db
+
+  database-admin:
+    container_name: database-admin
+    image: mongo-express
+    restart: 'no'
+    env_file:
+      - .env
+    ports:
+      - 8081:8081
+    networks:
+      - mynet
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: $MONGODB_USER
+      ME_CONFIG_MONGODB_ADMINPASSWORD: $MONGODB_PASSWORD
+      ME_CONFIG_MONGODB_URL: $MONGO_CONNECTION_URL
+    depends_on:
+      - database
+
+networks:
+  mynet:
+    driver: bridge
+
+volumes:
+  db:

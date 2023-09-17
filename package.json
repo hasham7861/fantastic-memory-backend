@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node src/server",
     "dev": "node-dev ./src/server.js",
-    "docker-install": "docker build -t fantastic-server .",
-    "docker-start": "docker run -it -p 9000:5000 fantastic-server",
+    "dev:docker": "docker compose -f local.docker-compose.yml up",
     "eslint": "eslint",
     "test": "mocha --recursive src/tests/**/*.js"
   },
