@@ -1,4 +1,3 @@
-# Use the official Node.js v14 slim image as the base image
 FROM node:16-slim
 # Set the working directory in the container
 WORKDIR /app

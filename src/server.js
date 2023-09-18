@@ -4,7 +4,10 @@ const http = require('http');
 const cors = require('cors');
 const path = require('path');
 
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+const envFile = process.env.NODE_ENV === 'prod' ? '../.env.prod' : '../.env.local';
+const envRelativeFilePath = path.resolve(__dirname, envFile);
+require('dotenv').config({ path: path.resolve(__dirname, envRelativeFilePath) });
+
 const { connectToDB } = require("./shared/mongoDB");
 const webSocket = require('socket.io');
 const initAppRoutes = require('./base/app/app.route');
@@ -14,7 +17,7 @@ class Server {
 
   /**
    * @method _setupAndRetrieveExpressApp
-   * @description setup the express midleware
+   * @description setup the express middleware
    * @returns {ExpressApp} app
    */
   static async _setupAndRetrieveExpressApp() {

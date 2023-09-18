@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node src/server",
-    "dev": "nodemon ./src/server.js",
+    "dev": "nodemon NODE_ENV=dev ./src/server.js",
     "dev:docker": "docker compose -f local.docker-compose.yml up",
     "eslint": "eslint",
     "test": "mocha --recursive src/tests/**/*.js"

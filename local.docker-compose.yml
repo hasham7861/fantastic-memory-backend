@@ -22,15 +22,13 @@ services:
     container_name: database
     image: mongo:3.6.0
     restart: 'no'
-    env_file:
-      - .env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=toor
     networks:
       - mynet
     ports:
-      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
+      - 27017:27017
     volumes:
       - db:/data/db
 
