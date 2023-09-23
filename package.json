@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node src/server",
+    "start:prod": "NODE_ENV=prod node src/server",
     "dev": "nodemon NODE_ENV=dev ./src/server.js",
     "dev:docker": "docker compose -f local.docker-compose.yml up",
     "eslint": "eslint",

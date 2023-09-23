@@ -22,9 +22,9 @@ class Server {
    */
   static async _setupAndRetrieveExpressApp() {
 
-    const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',')
+    // const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',')
     const corsOptions = {
-      origins:allowedOrigins,
+      origins:'*',
       optionSuccessStatus: 200
     }
     const app = express();
