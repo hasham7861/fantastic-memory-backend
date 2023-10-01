@@ -17,6 +17,8 @@ services:
       - ./src:/app/src:ro
       - ./package.json:/app/package.json:ro
       - ./package-lock.json:/app/package-lock.json:ro
+    depends_on:
+      - database
 
   database:
     container_name: database
