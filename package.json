@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "NODE_ENV=dev node src/server",
-    "start:prod": "NODE_ENV=prod node src/server",
+    "start:prod:ecs": "NODE_ENV=prod node src/server",
+    "start:prod:ec2": "NODE_ENV=prod pm2 start src/server.js",
     "dev": "NODE_ENV=dev nodemon src/server.js",
     "dev:docker": "docker compose -f local.docker-compose.yml up",
     "eslint": "eslint",
@@ -28,6 +29,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.10.1",
+    "pm2": "^5.3.0",
     "ramda": "^0.27.1",
     "socket.io": "^2.3.0"
   },
