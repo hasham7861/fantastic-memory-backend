@@ -5,7 +5,7 @@
   "scripts": {
     "start": "NODE_ENV=dev node src/server",
     "start:prod:ecs": "NODE_ENV=prod node src/server",
-    "start:prod:ec2": "NODE_ENV=prod pm2 start src/server.js",
+    "start:prod:ec2": "NODE_ENV=prod pm2 start src/server.js --max-restarts 5 --min-uptime 10000",
     "dev": "NODE_ENV=dev nodemon src/server.js",
     "dev:docker": "docker compose -f local.docker-compose.yml up",
     "eslint": "eslint",
